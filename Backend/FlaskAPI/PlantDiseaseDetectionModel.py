@@ -1,5 +1,8 @@
 import tensorflow as tf
 import pathlib
+from sklearn.metrics import f1_score, precision_score, recall_score, confusion_matrix
+from keras.models import load_model
+import numpy as np
 
 train_data_dir = "/Users/chanukaabeysinghe/Documents/Projects/GoviMithura/GreeenHub/Backend/FlaskAPI/Dataset/train"
 train_data_dir = pathlib.Path(train_data_dir)
@@ -70,7 +73,9 @@ model.fit(
   epochs=40
 )
 
-model.save('plant_disease_ditection_model_v3.h5')
+# model.save('plant_disease_ditection_model_v3.h5')
+model = load_model('plant_disease_ditection_model_v3.h5')
+
 
 # version 1 accuracy 0.2769   val_accuracy 0.2870   loss 1.8259
 # version 2 accuracy 0.7826   val_accuracy 0.7998  loss 0.5798 val_loss: 0.5480

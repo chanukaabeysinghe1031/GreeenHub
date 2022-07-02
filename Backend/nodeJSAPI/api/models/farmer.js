@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const userSchema = new mongoose.Schema({
+const farmerSchema = new mongoose.Schema({
     fullName:{
         type:String,
         required:true
@@ -12,7 +12,15 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    address:{
+        type:String,
+        required:true
+    },
+    mobileNo:{
+        type:String,
+        required:true
+    }
 })
 
 
-module.exports =  mongoose.model('Users',userSchema)
+module.exports =  mongoose.model('Farmers',farmerSchema)

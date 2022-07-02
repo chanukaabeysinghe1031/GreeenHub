@@ -1,47 +1,49 @@
-const User  = require('../models/user')
+const Farmer = require('../models/farmer')
 const bcrypt = require("bcryptjs");
 
 // ************************* To register a seller account **************************
-exports.addUser =  async  (req,res) => {
-    const {fullName,address,contactNo,email,password} = req.body
+exports.addFarmer =  async  (req,res) => {
+    const {fullName,address,mobileNo,email,password} = req.body
 
-    if(fullName===""||email===""||password===""){
+    if(fullName===""||email===""||password===""||address===""||mobileNo===""){
         res.json({Status: "Unsuccessful", Message: "All the data must be entered."})
     }else{
         console.log(email)
-        const user = new User({
+        const farmer = new Farmer({
             fullName,
             email,
-            password
+            password,
+            address,
+            mobileNo
         })
 
-        User.find({email:email})
+        Farmer.find({email:email})
         .then(user=>{
-            console.log(user)
-            if(user.length>0){
+            console.log(farmer)
+            if(farmer.length>0){
                 res.json({
                     Status: "Unsuccessful",
                     Message: "There is a user with this email address already."
                 })
             }else{
-                const newUser = new User({fullName,email,password})
+                const newFarmer = new Farmer({fullName,email,password,address,mobileNo})
                 bcrypt.genSalt(10, (err, salt) => {
-                    bcrypt.hash(newUser.password, salt, (err, hash) => {
+                    bcrypt.hash(newFarmer.password, salt, (err, hash) => {
                         if (err) throw err;
-                        newUser.password = hash;
-                        newUser.save()
+                        newFarmer.password = hash;
+                        newFarmer.save()
                         .then(responseSavingUser => {
                             console.log(responseSavingUser)
                             res.json({
                                 Status: "Successful",
-                                Message: 'User has been registered successfully.',
-                                User: responseSavingUser
+                                Message: 'Farmer has been registered successfully.',
+                                Farmer: responseSavingUser
                             })
                         })
                         .catch(error => {
                             res.json({
                                 Status: "Unsuccessful",
-                                Message: "Happened saving the user in " +
+                                Message: "Happened saving the farmer in " +
                                     "DB.",
                                 error: error.Message
                             })
@@ -71,7 +73,7 @@ exports.signin = async (req, res) => {
     }
 
     //Check for existing user
-    User.findOne({email: req.body.email})
+    Farmer.findOne({email: req.body.email})
         .then(user => {
             if (!user) {
                 res.json({Status: "Unsuccessful", Message: 'Invalid user email.'})
@@ -84,7 +86,7 @@ exports.signin = async (req, res) => {
                         } else {
                             res.json({
                                 Status: "Successful",
-                                Message: 'User has been registered successfully.',
+                                Message: 'User has been logged successfully.',
                                 User: user
                             })
                         }
@@ -94,11 +96,11 @@ exports.signin = async (req, res) => {
 }
 
 exports.getUsers = async (req,res) =>{
-    User.find()
-        .then(users=>{
+    Farmer.find()
+        .then(farmers=>{
             res.json({
                 "Status":"Successful",
-                "Users": users
+                "Farmers": farmers
             })
         })
         .catch(error=>{

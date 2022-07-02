@@ -20,7 +20,7 @@ const FarmerLoginScreen = ({navigation}) => {
 
 
     const handleLogin = () => {
-         const url = "http://192.168.8.158:3003/api/users/login";
+         const url = "http://192.168.1.8:3003/api/farmers/loginFarmer";
          axios.post(url,{email:email,password:password})
          .then(response=>{
             let res = JSON.stringify(response.data);
@@ -28,7 +28,7 @@ const FarmerLoginScreen = ({navigation}) => {
             res = JSON.parse(res)
             if(res.Status==="Successful"){
                 console.log("User Id "+res.User._id)
-                navigation.navigate('MoodDetection',{userId:res.User._id})
+                navigation.navigate('FarmerHome',{userId:res.User._id})
             }else{
                 console.log(res.Message)
                 setLoginMessage(res.Message)

@@ -6,33 +6,39 @@ import {
     Button,
     TouchableOpacity,
     StyleSheet,
-    ImageBackground
+    ImageBackground,
+    ScrollView
 } from 'react-native';
 import axios from 'axios';
 
 const FarmerRegisterScreen = ({navigation}) => {
     const [email,setEmail] = useState(null);
     const [fullName,setFullName] = useState(null);
-    const [contactNo,setContactNo] = useState(null);
+    const [mobileNo,setMobileNo] = useState(null);
     const [password,setPassword] = useState(null);
-
+    const [address,setAddress] = useState(null);
+    const [loginMessage,setLoginMessage] = useState(null);
     const image = { uri: "https://media.istockphoto.com/vectors/landscape-of-rice-field-terraces-asian-rural-background-agriculture-vector-id1226970191?k=20&m=1226970191&s=612x612&w=0&h=60ddCH9qlOmTZe_Sqw7QSTYv3KK-dNUr7n5yBnCZjoE=" };
 
     const handleSignup = (credentials) => {
-        const url = "http://192.168.8.158:3003/api/users/addUser";
-        axios.post(url,{fullName:fullName,email:email,password:password})
+        console.log("SDSHJKSHFKJHFSJKHFSKJH")
+        const url = "http://192.168.1.8:3003/api/farmers/addFarmer";
+        axios.post(url,{fullName:fullName,email:email,password:password,address:address,mobileNo:mobileNo})
         .then(response=>{
             let res = JSON.stringify(response.data);
             setLoginMessage(res.Status);
             res = JSON.parse(res)
             if(res.Status==="Successful"){
-                navigation.navigate('PredictFatLevel')
+                console.log("BBBBBBBBBBBBB")
+                navigation.navigate('FarmerHome')
             }else{
+                console.log("CCCCCCCCCCCC")
                 console.log(res.Message)
                 setLoginMessage(res.Message)
             }
         })
         .catch(error=>{
+            console.log(error)
             setLoginMessage(error)
         })
    }
@@ -53,8 +59,16 @@ const FarmerRegisterScreen = ({navigation}) => {
                     placeholder='Enter Contact No' 
                     style={styles.input}
                     placeholderTextColor='#6ab04c' 
-                    value={contactNo}
-                    onChangeText={(text)=>setContactNo(text)}
+                    value={mobileNo}
+                    keyboardType='numeric'
+                    onChangeText={(text)=>setMobileNo(text)}
+                />
+                 <TextInput 
+                    placeholder='Enter Addresss' 
+                    style={styles.input}
+                    placeholderTextColor='#6ab04c' 
+                    value={address}
+                    onChangeText={(text)=>setAddress(text)}
                 />
                  <TextInput 
                     placeholder='Enter Email' 
@@ -95,14 +109,14 @@ const styles = StyleSheet.create({
     },
     image: {
         width:'100%',
-        height:300,
+        height:200,
         position:'absolute',
         top:0,
         justifyContent: "center"
     },
     wrapper:{
         position:'absolute',
-         top:300,
+         top:200,
          bottom:0,
          backgroundColor:'white',
          borderBottomColor:'#6ab04c',

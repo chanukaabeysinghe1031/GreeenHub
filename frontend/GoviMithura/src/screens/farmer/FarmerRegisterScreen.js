@@ -5,15 +5,18 @@ import {
     View,
     Button,
     TouchableOpacity,
-    StyleSheet
+    StyleSheet,
+    ImageBackground
 } from 'react-native';
 import axios from 'axios';
 
-const RegisterScreen = ({navigation}) => {
+const FarmerRegisterScreen = ({navigation}) => {
     const [email,setEmail] = useState(null);
     const [fullName,setFullName] = useState(null);
     const [contactNo,setContactNo] = useState(null);
     const [password,setPassword] = useState(null);
+
+    const image = { uri: "https://media.istockphoto.com/vectors/landscape-of-rice-field-terraces-asian-rural-background-agriculture-vector-id1226970191?k=20&m=1226970191&s=612x612&w=0&h=60ddCH9qlOmTZe_Sqw7QSTYv3KK-dNUr7n5yBnCZjoE=" };
 
     const handleSignup = (credentials) => {
         const url = "http://192.168.8.158:3003/api/users/addUser";
@@ -35,26 +38,28 @@ const RegisterScreen = ({navigation}) => {
    }
     return(
         <View style={styles.container}>
+            <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+            </ImageBackground> 
             <View style={styles.wrapper}>
                 <Text style={styles.titleTextStyle}>REGISTER</Text>
                 <TextInput 
                     placeholder='Enter Full Name' 
                     style={styles.input}
-                    placeholderTextColor='black' 
+                    placeholderTextColor='#6ab04c' 
                     value={fullName}
                     onChangeText={(text)=>setFullName(text)}
                 />
                  <TextInput 
                     placeholder='Enter Contact No' 
                     style={styles.input}
-                    placeholderTextColor='black' 
+                    placeholderTextColor='#6ab04c' 
                     value={contactNo}
                     onChangeText={(text)=>setContactNo(text)}
                 />
                  <TextInput 
                     placeholder='Enter Email' 
                     style={styles.input}
-                    placeholderTextColor='black' 
+                    placeholderTextColor='#6ab04c' 
                     value={email}
                     onChangeText={(text)=>setEmail(text)}
                 />
@@ -62,7 +67,7 @@ const RegisterScreen = ({navigation}) => {
                     placeholder='Enter Password' 
                     secureTextEntry 
                     style={styles.input} 
-                    placeholderTextColor='black' 
+                    placeholderTextColor='#6ab04c' 
                     value={password}
                     onChangeText={(text)=>setPassword(text)}
                 />
@@ -72,7 +77,7 @@ const RegisterScreen = ({navigation}) => {
                 </TouchableOpacity>
                 <View style={{flexDirection:'row',marginTop:10,alignSelf:'center'}}>
                     <Text style={styles.text}>Have an account already? </Text>
-                    <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
+                    <TouchableOpacity onPress={()=>navigation.navigate('FarmerLogin')}>
                         <Text style={styles.link}>Login</Text>
                     </TouchableOpacity>
                 </View>
@@ -86,27 +91,29 @@ const styles = StyleSheet.create({
          flex:1,
          alignItems:'center',
          justifyContent:'center',
-         backgroundColor:"#bdc3c7"
+         backgroundColor:"#6ab04c"
+    },
+    image: {
+        width:'100%',
+        height:300,
+        position:'absolute',
+        top:0,
+        justifyContent: "center"
     },
     wrapper:{
-        width:'100%',
-        // borderWidth:1,
-        borderColor:'#bbb',
-        borderRadius:5,
-        paddingHorizontal:14,
-        paddingTop:'10%',
-        height:"100%",
-        backgroundColor:"#ecf0f1",
-        justifyContent:'center',
-        alignContent:'center',
-        alignItems:'center',
-        borderBottomEndRadius:300,
-        borderTopStartRadius:300,
-        borderColor:'#9b59b6',
-        borderWidth:1
-    },
+        position:'absolute',
+         top:300,
+         bottom:0,
+         backgroundColor:'white',
+         borderBottomColor:'#6ab04c',
+         // borderBottomLeftRadius:300,
+         // borderBottomRightRadius:00,
+         width:'100%',
+         alignItems:'center',
+         justifyContent:'center',
+     },
     titleTextStyle:{
-        color:"#9b59b6",
+        color:"#6ab04c",
         fontSize:30,
         letterSpacing:15,
         marginBottom:20,
@@ -121,8 +128,9 @@ const styles = StyleSheet.create({
         padding:10,
         width:'80%',
         borderRadius:30,
-        color:'#9b59b6',
-        borderColor:'#9b59b6',
+        color:'#6ab04c',
+        borderColor:'#6ab04c',
+        textAlign:'center'
     },
     buttonContainer:{
         marginTop:30,
@@ -130,12 +138,12 @@ const styles = StyleSheet.create({
         height:30,
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor:'#9b59b6',
-        color:'#ecf0f1',
+        backgroundColor:'#6ab04c',
+        color:'white',
         borderRadius:20,
     },
     link:{
-        color:'blue'
+        color:'#6ab04c'
     },
     text:{
         color:'black',
@@ -143,4 +151,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default RegisterScreen;
+export default FarmerRegisterScreen;

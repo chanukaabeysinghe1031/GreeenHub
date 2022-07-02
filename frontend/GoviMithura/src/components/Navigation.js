@@ -4,11 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Screens
-import HomeScreen from '../screens/HomeScreen';
-import LoginScreen from '../screens/LoginScreen';
+import FarmerHomeScreen from '../screens/farmer/FarmerHomeScreen';
+import FarmerLoginScreen from '../screens/farmer/FarmerLoginScreen';
 import WelcomePageScreen from '../screens/WelcomePageScreen';
-import RegisterScreen from '../screens/RegisterScreen';
-
+import FarmerRegisterScreen from '../screens/farmer/FarmerRegisterScreen';
+import AccountSelectScreen from "../screens/AccountSelectScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,9 +17,10 @@ const Navigation = () => {
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen name='Welcome' component={WelcomePageScreen} options={{headerShown:false}}></Stack.Screen>
-                <Stack.Screen name='Login' component={LoginScreen} options={{headerShown:false}}></Stack.Screen>
-                <Stack.Screen name='Home' component={HomeScreen} options={{headerShown:false}}></Stack.Screen>
-                <Stack.Screen name='Register' component={RegisterScreen} options={{headerShown:false}}></Stack.Screen>
+                <Stack.Screen name='FarmerLogin' component={FarmerLoginScreen} options={{headerShown:false}}></Stack.Screen>
+                <Stack.Screen name='FarmerHome' component={FarmerHomeScreen} options={{headerShown:false}}></Stack.Screen>
+                <Stack.Screen name='FarmerRegister' component={FarmerRegisterScreen} options={{headerShown:false}}></Stack.Screen>
+                <Stack.Screen name='AccountSelect' component={AccountSelectScreen} options={{headerShown:false}}></Stack.Screen>
             </Stack.Navigator>
         </NavigationContainer>
     );

@@ -8,3 +8,4 @@ frontend/GoviMithura/android
 frontend/GoviMithura/node_modules
 Backend/nodeJSAPI/node_modules
 Backend/nodeJSAPI/uploads
+Backend/FlaskAPI/uploadedImage.jpeg

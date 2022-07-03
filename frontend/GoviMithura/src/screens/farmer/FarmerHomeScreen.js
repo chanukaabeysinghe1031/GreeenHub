@@ -12,7 +12,7 @@ const HomeScreen = ({navigation}) => {
     return(
         <View style={styles.container}>
         <View style={styles.wrapper}>
-            <View style={styles.button}><Button title="Mood Detection" onPress={()=>navigation.navigate('MoodDetection')}/></View>
+            <View style={styles.button}><Button title="Plant Disease Detection" onPress={()=>navigation.navigate('FarmerDiseaseDetection')}/></View>
             <View style={styles.button}><Button title="Predict Fat Level" onPress={()=>navigation.navigate('PredictFatLevel')}/></View>
             {/* <View><Button title="Login" style={styles.button}/></View> */}
         </View>

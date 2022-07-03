@@ -40,7 +40,7 @@ def getMoodPrediction():
     data = request.get_json(force=True)
     encoded = data['image']
 
-    imageURL = "http://192.168.8.158:3003/uploads/"+encoded
+    imageURL = "http://192.168.1.8:3003/uploads/"+encoded
     url = imageURL.replace(" ", "%20")
     print(url)
     urllib.request.urlretrieve(url,"uploadedImage.jpeg")
@@ -67,11 +67,12 @@ def getMoodPrediction():
             "Tomato___Tomato_mosaic_virus",
             "Tomato___Tomato_Yellow_Leaf_Curl_Virus"
         ]
-        predictedMood = classes[pred]
-        return jsonify({"PredictedDisease": predictedMood}), 201
+        predictedDisease = classes[pred]
+        print(predictedDisease)
+        return jsonify({"PredictedDisease": predictedDisease}), 201
 
     return jsonify({"ERROR":"AN ERROR HAPPENED"}), 201
 
 if __name__ == "__main__":
-    app.run(debug=True,port=5004)
+    app.run(debug=True,port=5000)
 

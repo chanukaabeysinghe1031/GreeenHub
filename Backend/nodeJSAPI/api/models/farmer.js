@@ -19,6 +19,16 @@ const farmerSchema = new mongoose.Schema({
     mobileNo:{
         type:String,
         required:true
+    },
+    noPosts:{
+        type:Intl,
+        required:false,
+        default:0
+    },
+    noComments:{
+        type:Intl,
+        required:false,
+        default:0
     }
 })
 

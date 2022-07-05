@@ -5,10 +5,12 @@ const cors = require('cors')
 
 const farmerRouter = require('./api/routes/farmer_routes')
 const diseaseDetectionRouter = require('./api/routes/diseaseDetectionRecords_routes')
+const postsRouter = require('./api/routes/posts_routes')
+const commentsRouter = require('./api/routes/comments_routes')
 
 // ROUTES
 app.get('/',(req,res)=>{
-    res.send("This is depression App's API")
+    res.send("This is Govi Mithura Mobile Applications API")
 })
 
 
@@ -20,5 +22,7 @@ app.use('/uploads',express.static('uploads'));
 
 app.use('/api/farmers',farmerRouter );
 app.use('/api/diseases',diseaseDetectionRouter);
+app.use('/api/posts',postsRouter);
+app.use('/api/comments',commentsRouter);
 
 app.listen(3003);

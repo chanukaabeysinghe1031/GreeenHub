@@ -7,7 +7,7 @@ const connectDB = async () =>{
         useUnifiedTopology:true,
         useNewUrlParser:true,
     });
-    console.log("DEPRESSION APP DATABASE CONNECTION HAS BEEN SET UP!")
+    console.log("GOVI MITHURA MOBILE APP DATABASE CONNECTION HAS BEEN SET UP!")
 }
 
 module.exports = connectDB;

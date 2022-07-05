@@ -22,7 +22,7 @@ const FarmerRegisterScreen = ({navigation}) => {
 
     const handleSignup = (credentials) => {
         console.log("SDSHJKSHFKJHFSJKHFSKJH")
-        const url = "http://192.168.1.8:3003/api/farmers/addFarmer";
+        const url = "http://192.168.8.158:3003/api/farmers/addFarmer";
         axios.post(url,{fullName:fullName,email:email,password:password,address:address,mobileNo:mobileNo})
         .then(response=>{
             let res = JSON.stringify(response.data);

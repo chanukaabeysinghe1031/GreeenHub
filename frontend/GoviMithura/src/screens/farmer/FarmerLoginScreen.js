@@ -20,15 +20,15 @@ const FarmerLoginScreen = ({navigation}) => {
 
 
     const handleLogin = () => {
-         const url = "http://192.168.1.8:3003/api/farmers/loginFarmer";
+         const url = "http://192.168.8.158:3003/api/farmers/loginFarmer";
          axios.post(url,{email:email,password:password})
          .then(response=>{
             let res = JSON.stringify(response.data);
             setLoginMessage(res.Status);
             res = JSON.parse(res)
             if(res.Status==="Successful"){
-                console.log("User Id "+res.User._id)
-                navigation.navigate('FarmerHome',{userId:res.User._id})
+                console.log("User Id ",res.User)
+                navigation.navigate('FarmerHome',{user:res.User})
             }else{
                 console.log(res.Message)
                 setLoginMessage(res.Message)
@@ -137,7 +137,6 @@ const styles = StyleSheet.create({
     loginText:{
         color:'white',
         fontSize:20
-
     },
     link:{
         color:'#6ab04c',

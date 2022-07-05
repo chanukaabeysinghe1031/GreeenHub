@@ -36,17 +36,23 @@ exports.addPost =  async  (req,res) => {
 }
 
 exports.getPosts = async (req,res) =>{
-    Posts.find()
-        .then(posts=>{
-            res.json({
-                "Status":"Successful",
-                "Posts": posts
+
+    const {category} = req.body
+    if(category===""){
+        res.json({Status: "Unsuccessful", Message: "All the data must be entered."})
+    }else{
+        Posts.find({category:category})
+            .then(posts=>{
+                res.json({
+                    "Status":"Successful",
+                    "Posts": posts
+                })
             })
-        })
-        .catch(error=>{
-            res.json({
-                "Status":"Unsuccessful",
-                "Error": error
+            .catch(error=>{
+                res.json({
+                    "Status":"Unsuccessful",
+                    "Error": error
+                })
             })
-        })
+    }
 }

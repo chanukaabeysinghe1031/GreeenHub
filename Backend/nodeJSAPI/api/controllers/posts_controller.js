@@ -25,6 +25,7 @@ exports.addPost =  async  (req,res) => {
                 })
             })
             .catch(error => {
+                console.log(error)
                 res.json({
                     Status: "Unsuccessful",
                     Message: "Happened saving the  post in " +

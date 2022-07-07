@@ -22,7 +22,6 @@ const DiseaseDitectionScreen = ({navigation,route}) => {
     const background = { uri: "https://media.istockphoto.com/vectors/landscape-of-rice-field-terraces-asian-rural-background-agriculture-vector-id1226970191?k=20&m=1226970191&s=612x612&w=0&h=60ddCH9qlOmTZe_Sqw7QSTYv3KK-dNUr7n5yBnCZjoE=" };
 
     const handlePrediction = async (credentials) => {
-        const url = "http://192.168.8.158:3003/api/diseases/ditectDisease";
         setLoginMessage("Loading Prediction")
         const formData = new FormData();
         // console.log(route.params.userId)

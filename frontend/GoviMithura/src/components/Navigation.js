@@ -12,6 +12,9 @@ import AccountSelectScreen from "../screens/AccountSelectScreen";
 import DiseaseDitectionScreen from "../screens/farmer/FarmerDiseaseDetectionScreen";
 import PlantsSelectionScreen from "../screens/farmer/PlantsSelectionsScreen";
 import CommunityScreen from "../screens/farmer/FarmerCommunityScreen";
+import AddPostScreen from "../screens/farmer/FarmerAddPostScreen";
+import CommentsScreen from '../screens/farmer/FarmerCommentsScreen';
+import AddCommentScreen from '../screens/farmer/FarmerAddCommentScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +30,9 @@ const Navigation = () => {
                 <Stack.Screen name='FarmerDiseaseDetection' component={DiseaseDitectionScreen} options={{headerShown:false}}></Stack.Screen>
                 <Stack.Screen name='PlantsSelection' component={PlantsSelectionScreen} options={{headerShown:false}}></Stack.Screen>
                 <Stack.Screen name='Community' component={CommunityScreen} options={{headerShown:false}}></Stack.Screen>
-
+                <Stack.Screen name='AddPost' component={AddPostScreen} options={{headerShown:false}}></Stack.Screen>
+                <Stack.Screen name='Comments' component={CommentsScreen} options={{headerShown:false}}></Stack.Screen>
+                <Stack.Screen name='AddComment' component={AddCommentScreen} options={{headerShown:false}}></Stack.Screen>
             </Stack.Navigator>
         </NavigationContainer>
     );

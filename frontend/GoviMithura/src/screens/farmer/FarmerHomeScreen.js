@@ -15,6 +15,7 @@ const FarmerHomeScreen = ({route,navigation}) => {
     const {user} = route.params;
 
     useEffect(() => {
+        console.log(process.env.REACT_APP_BASE_URL)
         console.log("PASSED USER",user.fullName)
     })
     return(
@@ -47,16 +48,16 @@ const FarmerHomeScreen = ({route,navigation}) => {
                         <Text style={styles.productsDetailsText}>24</Text>
                     </View>
                     <View style={styles.productButtonsContainer}>
-                        <TouchableOpacity style={styles.productButton} onPress={()=>navigation.navigate('PlantsSelection',{user:user})}>
+                        <TouchableOpacity style={styles.productButton} >
                             <Text style={styles.productButtonText}>All Your Products</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.productButton} onPress={()=>navigation.navigate('FarmerDiseaseDetection')}>
+                        <TouchableOpacity style={styles.productButton}>
                             <Text style={styles.productButtonText}>Add a Product</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
 
-                <TouchableOpacity style={styles.communityButton} onPress={()=>navigation.navigate('FarmerDiseaseDetection')}>
+                <TouchableOpacity style={styles.communityButton} onPress={()=>navigation.navigate('PlantsSelection',{user:user})}>
                     <Text style={styles.communityText}>Go to Community Page</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonContainer} onPress={()=>navigation.navigate('FarmerDiseaseDetection')}>

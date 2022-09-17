@@ -10,7 +10,6 @@ import {
     ImageBackground
 } from 'react-native';
 
-
 const FarmerLoginScreen = ({navigation}) => {
 
     const [email,setEmail] = useState(null);
@@ -21,7 +20,8 @@ const FarmerLoginScreen = ({navigation}) => {
 
     const handleLogin = () => {
         
-         const url = "http://192.168.1.8:3003/api/farmers/loginFarmer";
+        const REACT_APP_BASE_URL = "http://192.168.8.158:3003/api/";
+         const url = REACT_APP_BASE_URL+"farmers/loginFarmer";
          axios.post(url,{email:email,password:password})
          .then(response=>{
             let res = JSON.stringify(response.data);

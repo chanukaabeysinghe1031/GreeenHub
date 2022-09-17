@@ -13,6 +13,8 @@ import { FlatGrid } from 'react-native-super-grid';
 import axios from 'axios';
 
 const AddCommentScreen =  ({route,navigation}) => {
+    const REACT_APP_BASE_URL = "http://192.168.8.158:3003/api/";
+
     const image = { uri: "https://media.istockphoto.com/vectors/landscape-of-rice-field-terraces-asian-rural-background-agriculture-vector-id1226970191?k=20&m=1226970191&s=612x612&w=0&h=60ddCH9qlOmTZe_Sqw7QSTYv3KK-dNUr7n5yBnCZjoE=" };
     const {data} = route.params;
     const [title,setTitle] = useState("");
@@ -20,7 +22,7 @@ const AddCommentScreen =  ({route,navigation}) => {
 
     const addPComment = () => {
         
-        const url = "http://192.168.1.8:3003/api/comments/addComment";
+        const url = REACT_APP_BASE_URL+"comments/addComment";
         axios.post(url,{
             farmerId:data.user._id,
             farmerName:data.user.fullName,

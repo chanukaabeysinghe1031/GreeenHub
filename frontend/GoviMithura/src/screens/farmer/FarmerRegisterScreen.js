@@ -12,6 +12,7 @@ import {
 import axios from 'axios';
 
 const FarmerRegisterScreen = ({navigation}) => {
+    const REACT_APP_BASE_URL = "http://192.168.8.158:3003/api/";
     const [email,setEmail] = useState(null);
     const [fullName,setFullName] = useState(null);
     const [mobileNo,setMobileNo] = useState(null);
@@ -22,7 +23,7 @@ const FarmerRegisterScreen = ({navigation}) => {
 
     const handleSignup = (credentials) => {
         console.log("SDSHJKSHFKJHFSJKHFSKJH")
-        const url = "http://192.168.1.8:3003/api/farmers/addFarmer";
+        const url = REACT_APP_BASE_URL+"farmers/addFarmer";
         axios.post(url,{fullName:fullName,email:email,password:password,address:address,mobileNo:mobileNo})
         .then(response=>{
             let res = JSON.stringify(response.data);

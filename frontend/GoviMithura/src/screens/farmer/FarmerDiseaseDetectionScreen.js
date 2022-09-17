@@ -14,6 +14,8 @@ import axios from 'axios';
 
 const DiseaseDitectionScreen = ({navigation,route}) => {
 
+    const REACT_APP_BASE_URL = "http://192.168.8.158:3003/api/";
+
     const [predictionContainerStyle,setPredictionContainerStyle] = useState(false)
     const [image,setImage] = useState(null);
     const [imageURL,setImageURL] = useState('https://www.kindpng.com/picc/m/293-2932764_cartoon-leaf-cartoon-leaf-transparent-background-hd-png.png');
@@ -31,7 +33,7 @@ const DiseaseDitectionScreen = ({navigation,route}) => {
             name:"moodImage.jpeg",
             type:image.mime
          })
-          fetch('http://192.168.1.8:3003/api/diseases/detectDisease',{
+          fetch(REACT_APP_BASE_URL+'diseases/detectDisease',{
              method:'post',
              body:formData,
              headers:{

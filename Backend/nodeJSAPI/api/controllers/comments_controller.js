@@ -1,4 +1,5 @@
 const Comments = require('../models/comments')
+const Farmer = require('../models/farmer')
 const {add} = require("nodemon/lib/rules");
 
 // ************************* To add a post **************************
@@ -17,11 +18,35 @@ exports.addComment=  async  (req,res) => {
 
         newComment.save()
             .then(responseComment => {
-                res.json({
-                    Status: "Successful",
-                    Message: 'Comment has been added successfully.',
-                    comment: responseComment
-                })
+                Farmer.findById(farmerId)
+                    .then(farmer=>{
+                        const newNumberOfComments = farmer.noComments+1;
+                        farmer.noComments = newNumberOfComments;
+                        farmer.save()
+                            .then(farmerSavedResponse=>{
+                                res.json({
+                                    Status: "Successful",
+                                    Message: 'Comment has been added successfully.',
+                                    comment: responseComment
+                                })
+                            })
+                            .catch(err=>{
+                                res.json({
+                                    Status: "Unsuccessful",
+                                    Message: "Happened updating the number of comments of farmer in " +
+                                        "DB.",
+                                    error: err.Message
+                                })
+                            })
+                    })
+                    .catch(err=>{
+                        res.json({
+                            Status: "Unsuccessful",
+                            Message: "Happened  searching for the  farmer in " +
+                                "DB.",
+                            error: err.Message
+                        })
+                    })
             })
             .catch(error => {
                 console.log(error)
@@ -35,6 +60,7 @@ exports.addComment=  async  (req,res) => {
     }
 }
 
+// ************************* To get comments **************************
 exports.getComments = async (req,res) =>{
     const {postId} = req.body
     if(postId===""){
@@ -49,8 +75,46 @@ exports.getComments = async (req,res) =>{
             })
             .catch(error=>{
                 res.json({
-                    "Status":"Unsuccessful",
-                    "Error": error
+                    Status: "Unsuccessful",
+                    Message: "Happened searching for the  comment in " +
+                        "DB.",
+                    error: error.Message
+                })
+            })
+    }
+}
+
+// ************************* To add a rate for a comment **************************
+exports.rateComment = async  (req,res) => {
+    const {commentId,farmerId,rate} = req.body;
+    if(commentId===""&&farmerId===""&&rate===""){
+        res.json({Status: "Unsuccessful", Message: "All the data must be entered."})
+    }else{
+        Comments.findById(commentId)
+            .then(comment=>{
+                comment.rate = rate;
+                comment.save()
+                    .then(updatedCommentResult=>{
+                        res.json({
+                            "Status":"Successful",
+                            "Comments": updatedCommentResult
+                        })
+                    })
+                    .catch(err=>{
+                        res.json({
+                            Status: "Unsuccessful",
+                            Message: "Happened saving the  comment in " +
+                                "DB.",
+                            error: err.Message
+                        })
+                    })
+            })
+            .catch(error=>{
+                res.json({
+                    Status: "Unsuccessful",
+                    Message: "Happened searching for the  comment in " +
+                        "DB.",
+                    error: error.Message
                 })
             })
     }

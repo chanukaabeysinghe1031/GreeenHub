@@ -60,7 +60,16 @@ const CommentsScreen =  ({route,navigation}) => {
                             <View style={[styles.itemContainer]}>
                                     <Text style={styles.itemCode}>{item.comment}</Text>
                                     <Text style={styles.itemFarmerName}>By {item.farmerName}</Text>
-                                </View>
+                                    <Text style={styles.itemCode}>{item.rate}/5</Text>
+                                    <TouchableOpacity 
+                                        style={styles.rateButtonContainer} 
+                                        onPress={
+                                            ()=>navigation.navigate('AddReview',{user:data.user})
+                                        }
+                                    >
+                                        <Text style={styles.rateButtonText}>Rate the comment</Text>
+                                    </TouchableOpacity>
+                            </View>
                         )}
                     />
                 </View>
@@ -201,6 +210,17 @@ const styles = StyleSheet.create({
         bottom:20,
         marginTop:30,
         width:300,
+        height:40,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:'#6ab04c',
+        color:'white',
+        borderRadius:10,
+    },
+    rateButtonContainer:{
+        marginTop:30,
+        marginLeft:'25%',
+        width:'50%',
         height:40,
         alignItems:'center',
         justifyContent:'center',

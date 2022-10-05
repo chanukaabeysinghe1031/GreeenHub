@@ -31,9 +31,8 @@ const AddReviewScreen =  ({route,navigation}) => {
         const url = REACT_APP_BASE_URL+"comments/rateComment";
         axios.post(url,{
             farmerId:data.user._id,
-            farmerName:data.user.fullName,
-            title:title,
-            comment:comment
+            commentId:data.commentId,
+            id:defaultRating
         })
         .then(response=>{
            let res = JSON.stringify(response.data);
@@ -81,6 +80,18 @@ const AddReviewScreen =  ({route,navigation}) => {
                     </View>
                     <Text style={styles.textStyle}>{defaultRating} / {maxRating.length}</Text>
                 </View>
+                <TouchableOpacity 
+                    style={styles.buttonContainer} 
+                    onPress={
+                        ()=>navigation.navigate('Comments',{data:{
+                            user:data.user,
+                            category:data.category,
+                            item:data.post
+                        }})
+                    }
+                >
+                        <Text style={styles.loginText}>Back to comments of the post</Text>
+                </TouchableOpacity>
         </View>
     );
 }

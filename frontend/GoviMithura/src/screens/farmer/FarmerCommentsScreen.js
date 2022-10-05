@@ -63,7 +63,12 @@ const CommentsScreen =  ({route,navigation}) => {
                                     <TouchableOpacity 
                                         style={styles.rateButtonContainer} 
                                         onPress={
-                                            ()=>navigation.navigate('AddReview',{user:data.user,commentId:item})
+                                            ()=>navigation.navigate('AddReview',{data:{
+                                                user:data.user,
+                                                commentId:item._id,
+                                                category:data.category,
+                                                post:data.item
+                                            }})
                                         }
                                     >
                                         <Text style={styles.rateButtonText}>Rate the comment</Text>
@@ -75,7 +80,11 @@ const CommentsScreen =  ({route,navigation}) => {
                 <TouchableOpacity 
                     style={styles.addPostButton} 
                     onPress={
-                        ()=>navigation.navigate('AddComment',{data:{user:data.user,category:data.category,post:data.item._id}})
+                        ()=>navigation.navigate('AddComment',{data:{
+                            user:data.user,
+                            category:data.category,
+                            post:data.item
+                        }})
                     }
                 >
                         <Text style={styles.loginText}>Add Comment</Text>
@@ -83,7 +92,10 @@ const CommentsScreen =  ({route,navigation}) => {
                 <TouchableOpacity 
                     style={styles.buttonContainer} 
                     onPress={
-                        ()=>navigation.navigate('FarmerHome',{user:data.user})
+                        ()=>navigation.navigate('Community',{data:{
+                            user:data.user,
+                            category:data.category
+                        }})
                     }
                 >
                         <Text style={styles.loginText}>Community</Text>

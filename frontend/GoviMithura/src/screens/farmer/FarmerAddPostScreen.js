@@ -78,10 +78,10 @@ const AddPostScreen =  ({route,navigation}) => {
                     <TouchableOpacity 
                         style={styles.buttonContainer} 
                         onPress={
-                            ()=>navigation.navigate('FarmerHome',{user:data.user})
+                            ()=>navigation.navigate('Community',{data:{user:data.user,category:data.category}})
                         }
                     >
-                        <Text style={styles.loginText}>Home</Text>
+                        <Text style={styles.loginText}>Community</Text>
                     </TouchableOpacity>
                 </View>
         </View>

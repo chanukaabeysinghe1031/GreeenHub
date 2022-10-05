@@ -69,7 +69,10 @@ const CommunityScreen =  ({route,navigation}) => {
                 <TouchableOpacity 
                     style={styles.addPostButton} 
                     onPress={
-                        ()=>navigation.navigate('AddPost',{data:{user:data.user,category:data.category}})
+                        ()=>navigation.navigate('AddPost',{data:{
+                            user:data.user,
+                            category:data.category
+                        }})
                     }
                 >
                         <Text style={styles.loginText}>Add Post</Text>
@@ -77,10 +80,10 @@ const CommunityScreen =  ({route,navigation}) => {
                 <TouchableOpacity 
                     style={styles.buttonContainer} 
                     onPress={
-                        ()=>navigation.navigate('FarmerHome',{user:data.user})
+                        ()=>navigation.navigate('PlantsSelection',{user:data.user})
                     }
                 >
-                        <Text style={styles.loginText}>Home</Text>
+                        <Text style={styles.loginText}>Back to select the plant</Text>
                 </TouchableOpacity>
             
         </View>

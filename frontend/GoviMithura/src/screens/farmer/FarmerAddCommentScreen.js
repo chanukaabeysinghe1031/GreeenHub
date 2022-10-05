@@ -27,7 +27,7 @@ const AddCommentScreen =  ({route,navigation}) => {
         axios.post(url,{
             farmerId:data.user._id,
             farmerName:data.user.fullName,
-            postId:data.post,
+            postId:data.post._id,
             addedComment:comment
         })
         .then(response=>{
@@ -35,7 +35,11 @@ const AddCommentScreen =  ({route,navigation}) => {
            res = JSON.parse(res)
            if(res.Status==="Successful"){
                console.log("SUCCESS")
-               navigation.navigate('Community',{data:{user:data.user,category:data.category}})
+               navigation.navigate('Comments',{data:{
+                   user:data.user,
+                   category:data.category,
+                   item:data.post
+                }})
            }else{
                console.log("FAILED")
                setError("Failed due to network error.")
@@ -72,7 +76,11 @@ const AddCommentScreen =  ({route,navigation}) => {
                     <TouchableOpacity 
                         style={styles.buttonContainer} 
                         onPress={
-                            ()=>navigation.navigate('FarmerHome',{user:data.user})
+                            ()=> navigation.navigate('Comments',{data:{
+                                user:data.user,
+                                category:data.category,
+                                item:data.post
+                             }})
                         }
                     >
                         <Text style={styles.loginText}>To The Post</Text>

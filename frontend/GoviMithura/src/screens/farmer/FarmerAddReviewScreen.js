@@ -27,19 +27,21 @@ const AddReviewScreen =  ({route,navigation}) => {
     const starImageFilled = "https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png";
 
     const addReview = () => {
-        
+        console.log("AAAAAAA")
         const url = REACT_APP_BASE_URL+"comments/rateComment";
         axios.post(url,{
-            farmerId:data.user._id,
             commentId:data.commentId,
-            id:defaultRating
+            rate:defaultRating
         })
         .then(response=>{
            let res = JSON.stringify(response.data);
            res = JSON.parse(res)
            if(res.Status==="Successful"){
-               console.log("Post Id ",res.post._id)
-               navigation.navigate('Community',{data:{user:data.user,category:data.category}})
+               navigation.navigate('Comments',{data:{
+                   user:data.user,
+                   category:data.category,
+                   item:data.post
+                }})
            }else{
                console.log(res)
            }
@@ -80,6 +82,12 @@ const AddReviewScreen =  ({route,navigation}) => {
                     </View>
                     <Text style={styles.textStyle}>{defaultRating} / {maxRating.length}</Text>
                 </View>
+                <TouchableOpacity 
+                    style={styles.rateButtonContainer} 
+                    onPress={addReview}
+                >
+                    <Text style={styles.rateButtonText}>Rate the comment</Text>
+                </TouchableOpacity>
                 <TouchableOpacity 
                     style={styles.buttonContainer} 
                     onPress={
@@ -188,7 +196,17 @@ const styles = StyleSheet.create({
         color:'green',
         marginTop:20,
         fontSize:20
-    }
+    },
+    rateButtonContainer:{
+        marginTop:200,
+        width:'50%',
+        height:40,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:'#6ab04c',
+        color:'white',
+        borderRadius:10,
+    },
 
 })
 

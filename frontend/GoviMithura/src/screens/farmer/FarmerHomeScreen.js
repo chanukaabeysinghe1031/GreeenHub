@@ -38,30 +38,14 @@ const FarmerHomeScreen = ({route,navigation}) => {
                         <Text style={styles.contributeItemText}>{user.noComments}</Text>
                     </View>
                 </View>
-                <View style={styles.productDetailsContainer}>
-                    <View style={styles.productsDetail}>
-                        <Text style={styles.productDetailsTitle} >Your completed number of Orders</Text>
-                        <Text style={styles.productsDetailsText}>24</Text>
-                    </View>
-                    <View style={styles.productsDetail}>
-                        <Text style={styles.productDetailsTitle}>Your pending number of Orders</Text>
-                        <Text style={styles.productsDetailsText}>24</Text>
-                    </View>
-                    <View style={styles.productButtonsContainer}>
-                        <TouchableOpacity style={styles.productButton} >
-                            <Text style={styles.productButtonText}>All Your Products</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.productButton}>
-                            <Text style={styles.productButtonText}>Add a Product</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-
                 <TouchableOpacity style={styles.communityButton} onPress={()=>navigation.navigate('PlantsSelection',{user:user})}>
                     <Text style={styles.communityText}>Go to Community Page</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonContainer} onPress={()=>navigation.navigate('FarmerDiseaseDetection')}>
-                    <Text style={styles.loginText}>Plant Disease Detection</Text>
+                <TouchableOpacity style={styles.postsButton} onPress={()=>navigation.navigate('FarmerDiseaseDetection')}>
+                    <Text style={styles.communityText}>See your posts </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.logoutButton} onPress={()=>navigation.navigate('FarmerLogin')}>
+                    <Text style={styles.logoutText}>Logout </Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -133,7 +117,7 @@ const styles = StyleSheet.create({
 
     communityButton:{
         position:'absolute',
-        bottom:70,
+        top:250,
         marginTop:30,
         width:200,
         height:40,
@@ -142,6 +126,38 @@ const styles = StyleSheet.create({
         backgroundColor:'#6ab04c',
         color:'white',
         borderRadius:10,
+    },
+    postsButton:{
+        position:'absolute',
+        top:300,
+        marginTop:30,
+        width:200,
+        height:40,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:'#6ab04c',
+        color:'white',
+        borderRadius:10,
+    },
+    logoutButton:{
+        position:'absolute',
+        bottom:50,
+        marginTop:30,
+        width:80,
+        height:80,
+        alignItems:'center',
+        justifyContent:'center',
+        color:'#6ab04c',
+        backgroundColor:'white',
+        borderRadius:80,
+        borderColor:'#6ab04c',
+        borderBottomWidth:4,
+        borderTopWidth:1,
+        borderLeftWidth:3,
+        borderRightWidth:3
+    },
+    logoutText:{
+        color:'#6ab04c'
     },
     communityText:{
         color:'white',

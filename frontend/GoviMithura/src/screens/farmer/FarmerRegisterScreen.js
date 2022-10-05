@@ -31,16 +31,14 @@ const FarmerRegisterScreen = ({navigation}) => {
             res = JSON.parse(res)
             if(res.Status==="Successful"){
                 console.log("BBBBBBBBBBBBB")
-                navigation.navigate('FarmerHome')
+                navigation.navigate('FarmerHome',{user:res.User})
             }else{
-                console.log("CCCCCCCCCCCC")
-                console.log(res.Message)
                 setLoginMessage(res.Message)
             }
         })
         .catch(error=>{
             console.log(error)
-            setLoginMessage(error)
+            setLoginMessage("Error Happened")
         })
    }
     return(
@@ -86,6 +84,9 @@ const FarmerRegisterScreen = ({navigation}) => {
                     value={password}
                     onChangeText={(text)=>setPassword(text)}
                 />
+                {
+                    loginMessage===""?<Text style={styles.loginMessage}>{loginMessage}</Text>:null
+                }
                 
                 <TouchableOpacity style={styles.buttonContainer} onPress={handleSignup}>
                    <Text>Register</Text>
@@ -162,6 +163,14 @@ const styles = StyleSheet.create({
     },
     text:{
         color:'black',
+        textAlign:'center'
+    },
+    loginMessage:{
+        backgroundColor:'red',
+        width:'100%',
+        fontSize:15,
+        color:'white',
+        padding:5,
         textAlign:'center'
     }
 })

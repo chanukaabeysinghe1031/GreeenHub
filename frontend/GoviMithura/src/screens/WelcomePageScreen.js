@@ -35,7 +35,7 @@ const WelcomePageScreen = ({navigation}) => {
                 </View>
                 <Text style={styles.details}>A Future for Agriculture with Tech</Text>
                 <TouchableOpacity 
-                    onPress={()=>navigation.navigate('AccountSelect')}>
+                    onPress={()=>navigation.navigate('FarmerLogin')}>
                     <Text style={styles.subText}>Get Started</Text>
                 </TouchableOpacity>
             </View>

@@ -20,6 +20,10 @@ const commentsSchema = new mongoose.Schema({
         type: Date,
         default : Date.now()
     },
+    rate:{
+        type:Number,
+        default:0,
+    }
 })
 
 

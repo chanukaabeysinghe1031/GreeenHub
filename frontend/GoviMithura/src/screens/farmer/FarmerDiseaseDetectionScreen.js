@@ -14,7 +14,7 @@ import axios from 'axios';
 
 const DiseaseDitectionScreen = ({navigation,route}) => {
 
-    const REACT_APP_BASE_URL = "http://192.168.8.158:3003/api/";
+    const REACT_APP_BASE_URL = "http://172.20.10.2:3003/api/";
 
     const [predictionContainerStyle,setPredictionContainerStyle] = useState(false)
     const [image,setImage] = useState(null);

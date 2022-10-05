@@ -13,7 +13,7 @@ import { FlatGrid } from 'react-native-super-grid';
 import axios from 'axios';
 
 const CommentsScreen =  ({route,navigation}) => {
-    const REACT_APP_BASE_URL = "http://192.168.8.158:3003/api/";
+    const REACT_APP_BASE_URL = "http://172.20.10.2:3003/api/";
     const image = { uri: "https://media.istockphoto.com/vectors/landscape-of-rice-field-terraces-asian-rural-background-agriculture-vector-id1226970191?k=20&m=1226970191&s=612x612&w=0&h=60ddCH9qlOmTZe_Sqw7QSTYv3KK-dNUr7n5yBnCZjoE=" };
     const {data} = route.params;
     const [items, setItems] = React.useState([]);
@@ -26,7 +26,6 @@ const CommentsScreen =  ({route,navigation}) => {
             let res = JSON.stringify(response.data);
             res = JSON.parse(res)
             if(res.Status==="Successful"){
-                console.log(res.Comments)
                 setItems(res.Comments)
             }else{
                 console.log(res.Message)
@@ -64,7 +63,7 @@ const CommentsScreen =  ({route,navigation}) => {
                                     <TouchableOpacity 
                                         style={styles.rateButtonContainer} 
                                         onPress={
-                                            ()=>navigation.navigate('AddReview',{user:data.user})
+                                            ()=>navigation.navigate('AddReview',{user:data.user,commentId:item})
                                         }
                                     >
                                         <Text style={styles.rateButtonText}>Rate the comment</Text>
@@ -76,7 +75,7 @@ const CommentsScreen =  ({route,navigation}) => {
                 <TouchableOpacity 
                     style={styles.addPostButton} 
                     onPress={
-                        ()=>navigation.navigate('AddComment',{data:{user:data.user,category:data.category}})
+                        ()=>navigation.navigate('AddComment',{data:{user:data.user,category:data.category,post:data.item._id}})
                     }
                 >
                         <Text style={styles.loginText}>Add Comment</Text>

@@ -20,7 +20,7 @@ const FarmerLoginScreen = ({navigation}) => {
 
     const handleLogin = () => {
         
-        const REACT_APP_BASE_URL = "http://192.168.8.158:3003/api/";
+        const REACT_APP_BASE_URL = "http://172.20.10.2:3003/api/";
          const url = REACT_APP_BASE_URL+"farmers/loginFarmer";
          axios.post(url,{email:email,password:password})
          .then(response=>{

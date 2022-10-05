@@ -13,35 +13,37 @@ import { FlatGrid } from 'react-native-super-grid';
 import axios from 'axios';
 
 const AddCommentScreen =  ({route,navigation}) => {
-    const REACT_APP_BASE_URL = "http://192.168.8.158:3003/api/";
+    const REACT_APP_BASE_URL = "http://172.20.10.2:3003/api/";
 
     const image = { uri: "https://media.istockphoto.com/vectors/landscape-of-rice-field-terraces-asian-rural-background-agriculture-vector-id1226970191?k=20&m=1226970191&s=612x612&w=0&h=60ddCH9qlOmTZe_Sqw7QSTYv3KK-dNUr7n5yBnCZjoE=" };
     const {data} = route.params;
     const [title,setTitle] = useState("");
     const [comment,setComment] = useState("");
-
-    const addPComment = () => {
-        
+    const [error,setError] = useState("");
+    const addComment = (event) => {
+        event.preventDefault()
+        console.log("ADDING COMMENT",data)
         const url = REACT_APP_BASE_URL+"comments/addComment";
         axios.post(url,{
             farmerId:data.user._id,
             farmerName:data.user.fullName,
-            title:title,
-            comment:comment
+            postId:data.post,
+            addedComment:comment
         })
         .then(response=>{
            let res = JSON.stringify(response.data);
            res = JSON.parse(res)
            if(res.Status==="Successful"){
-               console.log("Post Id ",res.post._id)
+               console.log("SUCCESS")
                navigation.navigate('Community',{data:{user:data.user,category:data.category}})
            }else{
-               console.log(res)
+               console.log("FAILED")
+               setError("Failed due to network error.")
            }
         })
         .catch(error=>{
             console.log(error)
-           // setLoginMessage(error)
+            setError(error)
         })
    }
 
@@ -51,7 +53,6 @@ const AddCommentScreen =  ({route,navigation}) => {
             </ImageBackground> 
                 <View style={styles.wrapper}>
                     <Text style={styles.titleTextStyle}>ADD A Comment</Text>
-                 
                     <TextInput 
                         multiline ={true}
                         maxLength={500}
@@ -64,7 +65,7 @@ const AddCommentScreen =  ({route,navigation}) => {
                     />
                     <TouchableOpacity 
                         style={styles.addPostButton} 
-                        // onPress={addPost} 
+                        onPress={addComment} 
                     >
                         <Text style={styles.addPostText}>Add  Comment</Text>
                     </TouchableOpacity>
@@ -76,6 +77,10 @@ const AddCommentScreen =  ({route,navigation}) => {
                     >
                         <Text style={styles.loginText}>To The Post</Text>
                     </TouchableOpacity>
+                    {
+                        error!=="" ? <Text style={styles.errorText}>{error}</Text> : null
+                    }
+                    
                 </View>
         </View>
     );
@@ -158,6 +163,16 @@ const styles = StyleSheet.create({
     loginText:{
         color:'#6ab04c',
         fontSize:15
+    }, 
+    errorText:{
+        position:'absolute',
+        bottom:0,
+        color:'white',
+        fontSize:20,
+        width:'100%',
+        textAlign:'center',
+        backgroundColor:'red',
+        marginBottom:20
     },  
 })
 

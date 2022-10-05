@@ -2,7 +2,7 @@ const Comments = require('../models/comments')
 const Farmer = require('../models/farmer')
 const {add} = require("nodemon/lib/rules");
 
-// ************************* To add a post **************************
+// ************************* To add a comment **************************
 exports.addComment=  async  (req,res) => {
     const {farmerId,farmerName,postId,addedComment} = req.body
 
@@ -13,7 +13,9 @@ exports.addComment=  async  (req,res) => {
             farmerName,
             farmerId,
             postId,
-            comment:addedComment
+            comment:addedComment,
+            rate:0,
+            numberOfReviews:0
         })
 
         newComment.save()
@@ -87,12 +89,12 @@ exports.getComments = async (req,res) =>{
 // ************************* To add a rate for a comment **************************
 exports.rateComment = async  (req,res) => {
     const {commentId,farmerId,rate} = req.body;
-    if(commentId===""&&farmerId===""&&rate===""){
+    if(commentId===""){
         res.json({Status: "Unsuccessful", Message: "All the data must be entered."})
     }else{
         Comments.findById(commentId)
             .then(comment=>{
-                comment.rate = rate;
+                comment.rate = (comment.rate*5+rate)/5;
                 comment.save()
                     .then(updatedCommentResult=>{
                         res.json({

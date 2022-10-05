@@ -14,13 +14,15 @@ exports.addFarmer =  async  (req,res) => {
             email,
             password,
             address,
-            mobileNo
+            mobileNo,
+            noPosts:0,
+            noComments:0
         })
 
         Farmer.find({email:email})
         .then(user=>{
-            console.log(farmer)
-            if(farmer.length>0){
+            if(user.length>0){
+                console.log("Unsuccessful")
                 res.json({
                     Status: "Unsuccessful",
                     Message: "There is a user with this email address already."
@@ -37,7 +39,7 @@ exports.addFarmer =  async  (req,res) => {
                             res.json({
                                 Status: "Successful",
                                 Message: 'Farmer has been registered successfully.',
-                                Farmer: responseSavingUser
+                                User: responseSavingUser
                             })
                         })
                         .catch(error => {

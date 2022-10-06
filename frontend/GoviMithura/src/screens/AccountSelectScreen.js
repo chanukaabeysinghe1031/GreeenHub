@@ -24,7 +24,7 @@ import LinearGradient from 'react-native-linear-gradient';
 const AccountSelectScreen= ({navigation}) => {
     const farmer = { uri: "https://img.freepik.com/free-vector/cartoon-farmer-holding-pitchfork_29190-4422.jpg?w=2000" };
 
-    const seller = {uri:"https://thumbs.dreamstime.com/b/cute-cartoon-vector-illustration-fruit-seller-women-professions-series-134800945.jpg"}
+    const ADMIN = {uri:"https://ak.picdn.net/shutterstock/videos/1078884224/thumb/1.jpg?"}
     return(
         <View style={styles.container} colors={["#72c2d9","#35a9ad","#03958b"]}>
             <View style={styles.wrapper}>
@@ -41,12 +41,12 @@ const AccountSelectScreen= ({navigation}) => {
 
                 <TouchableOpacity 
                     style={styles.buttonContainer}
-                    onPress={()=>navigation.navigate('FarmerLogin')}>
+                    onPress={()=>navigation.navigate('AdminLogin')}>
                     <View style={styles.logoContainer}>
-                        <ImageBackground source={seller} imageStyle={{ borderRadius: 500}} resizeMode="cover" style={styles.logo}>
+                        <ImageBackground source={ADMIN} imageStyle={{ borderRadius: 500}} resizeMode="cover" style={styles.logo}>
                         </ImageBackground>
                     </View>
-                    <Text style={styles.subText}>A seller</Text>
+                    <Text style={styles.subText}>An admin</Text>
                 </TouchableOpacity>
             </View>
         </View>

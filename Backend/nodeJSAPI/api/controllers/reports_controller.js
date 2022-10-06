@@ -66,4 +66,61 @@ exports.getReports = (req,res) => {
         })
 }
 
+exports.deleteReport = (req,res) => {
+    const {reportId} = req.body
+    if(reportId===""){
+        res.json({Status: "Unsuccessful", Message: "All the data must be entered."})
+    }else {
+        Report.findByIdAndDelete(reportId)
+            .then(report=>{
+                res.json({
+                    "Status":"Successful",
+                    "Report": report
+                })
+            })
+            .catch(error=>{
+                res.json({
+                    Status: "Unsuccessful",
+                    Message: "Happened while deleting the  report from " +
+                        "DB.",
+                    error: error.Message
+                })
+            })
+    }
+}
+
+exports.deleteComment = (req,res) => {
+    const {reportId,commentId} = req.body
+    if(reportId===""&&commentId===""){
+        res.json({Status: "Unsuccessful", Message: "All the data must be entered."})
+    }else {
+        Comments.findByIdAndDelete(commentId)
+            .then(comment=>{
+                Report.findByIdAndDelete(reportId)
+                    .then(report=>{
+                        res.json({
+                            "Status":"Successful",
+                            "Report": report
+                        })
+                    })
+                    .catch(error=>{
+                        res.json({
+                            Status: "Unsuccessful",
+                            Message: "Happened while deleting the  report from " +
+                                "DB.",
+                            error: error.Message
+                        })
+                    })
+            })
+            .catch(err=>{
+                res.json({
+                    Status: "Unsuccessful",
+                    Message: "Happened while deleting the  comment from " +
+                        "DB.",
+                    error: err.Message
+                })
+            })
+    }
+}
+
 

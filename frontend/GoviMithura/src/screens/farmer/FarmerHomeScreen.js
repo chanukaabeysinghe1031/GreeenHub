@@ -61,7 +61,7 @@ const FarmerHomeScreen = ({route,navigation}) => {
                 <TouchableOpacity style={styles.postsButton} onPress={()=>navigation.navigate('SelfPosts',{user:user})}>
                     <Text style={styles.communityText}>See your posts </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.logoutButton} onPress={()=>navigation.navigate('FarmerLogin')}>
+                <TouchableOpacity style={styles.logoutButton} onPress={()=>navigation.navigate('Welcome')}>
                     <Text style={styles.logoutText}>Logout </Text>
                 </TouchableOpacity>
             </View>

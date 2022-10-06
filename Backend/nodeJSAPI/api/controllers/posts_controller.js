@@ -1,4 +1,5 @@
 const Posts = require('../models/posts')
+const Farmer = require("../models/farmer");
 
 // ************************* To add a post **************************
 exports.addPost =  async  (req,res) => {
@@ -18,11 +19,27 @@ exports.addPost =  async  (req,res) => {
 
         post.save()
             .then(responsePost => {
-                res.json({
-                    Status: "Successful",
-                    Message: 'Post has been added successfully.',
-                    post: responsePost
-                })
+                Farmer.findById(farmerId)
+                    .then(farmer=>{
+                        const newNumberOfPosts = farmer.noPosts+1
+                        farmer.noPosts = newNumberOfPosts
+                        farmer.save()
+                            .then(farmerSavedResponse=>{
+                                res.json({
+                                    Status: "Successful",
+                                    Message: 'Comment has been added successfully.',
+                                    comment: responsePost
+                                })
+                            })
+                            .catch(err=>{
+                                res.json({
+                                    Status: "Unsuccessful",
+                                    Message: "Happened updating the number of posts of farmer in " +
+                                        "DB.",
+                                    error: err.Message
+                                })
+                            })
+                    })
             })
             .catch(error => {
                 console.log(error)

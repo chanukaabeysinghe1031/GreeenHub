@@ -34,7 +34,6 @@ const AddPostScreen =  ({route,navigation}) => {
            let res = JSON.stringify(response.data);
            res = JSON.parse(res)
            if(res.Status==="Successful"){
-               console.log("Post Id ",res.post._id)
                navigation.navigate('Community',{data:{user:data.user,category:data.category}})
            }else{
                console.log(res)

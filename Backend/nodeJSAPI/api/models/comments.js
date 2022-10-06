@@ -22,11 +22,11 @@ const commentsSchema = new mongoose.Schema({
     },
     rate:{
         type:Number,
-        required:false
+        required:true
     },
     numberOfReviews:{
         type:Number,
-        required:false
+        required:true
     }
 })
 

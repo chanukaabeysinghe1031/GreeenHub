@@ -94,7 +94,9 @@ exports.rateComment = async  (req,res) => {
     }else{
         Comments.findById(commentId)
             .then(comment=>{
-                comment.rate = (comment.rate*5+rate)/5;
+                let numberOfReviews = comment.numberOfReviews
+                comment.rate = (comment.rate*numberOfReviews+rate)/(numberOfReviews+1);
+                comment.numberOfReviews  = numberOfReviews+1
                 comment.save()
                     .then(updatedCommentResult=>{
                         res.json({
@@ -103,6 +105,7 @@ exports.rateComment = async  (req,res) => {
                         })
                     })
                     .catch(err=>{
+                        console.log(err)
                         res.json({
                             Status: "Unsuccessful",
                             Message: "Happened saving the  comment in " +

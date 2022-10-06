@@ -7,6 +7,7 @@ const farmerRouter = require('./api/routes/farmer_routes')
 const diseaseDetectionRouter = require('./api/routes/diseaseDetectionRecords_routes')
 const postsRouter = require('./api/routes/posts_routes')
 const commentsRouter = require('./api/routes/comments_routes')
+const reportsRouter = require('./api/routes/reports_routes')
 
 // ROUTES
 app.get('/',(req,res)=>{
@@ -24,5 +25,6 @@ app.use('/api/farmers',farmerRouter );
 app.use('/api/diseases',diseaseDetectionRouter);
 app.use('/api/posts',postsRouter);
 app.use('/api/comments',commentsRouter);
+app.use('/api/reports',reportsRouter);
 
 app.listen(3003);

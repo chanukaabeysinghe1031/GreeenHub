@@ -59,7 +59,7 @@ const CommentsScreen =  ({route,navigation}) => {
                             <View style={[styles.itemContainer]}>
                                     <Text style={styles.itemCode}>{item.comment}</Text>
                                     <Text style={styles.itemFarmerName}>By {item.farmerName}</Text>
-                                    <Text style={styles.itemCode}>{item.rate}/5</Text>
+                                    <Text style={styles.itemCode}>Rate {item.rate}/5</Text>
                                     <TouchableOpacity 
                                         style={styles.rateButtonContainer} 
                                         onPress={
@@ -72,6 +72,20 @@ const CommentsScreen =  ({route,navigation}) => {
                                         }
                                     >
                                         <Text style={styles.rateButtonText}>Rate the comment</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity 
+                                        style={styles.reportButtonContainer} 
+                                        onPress={
+                                            ()=>navigation.navigate('AddReport',{data:{
+                                                user:data.user,
+                                                commentId:item._id,
+                                                comment:item.comment,
+                                                category:data.category,
+                                                post:data.item
+                                            }})
+                                        }
+                                    >
+                                        <Text style={styles.reportButtonText}>Report</Text>
                                     </TouchableOpacity>
                             </View>
                         )}
@@ -229,7 +243,7 @@ const styles = StyleSheet.create({
         borderRadius:10,
     },
     rateButtonContainer:{
-        marginTop:30,
+        marginTop:10,
         marginLeft:'25%',
         width:'50%',
         height:40,
@@ -238,6 +252,20 @@ const styles = StyleSheet.create({
         backgroundColor:'#6ab04c',
         color:'white',
         borderRadius:10,
+    },
+    reportButtonContainer:{
+        marginTop:10,
+        marginLeft:'25%',
+        width:'50%',
+        height:40,
+        alignItems:'center',
+        justifyContent:'center',
+        color:'red',
+        borderRadius:10,
+    },
+    reportButtonText:{
+        color:'red',
+        fontSize:15
     },
     loginText:{
         color:'white',

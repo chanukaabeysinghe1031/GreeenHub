@@ -18,11 +18,10 @@ const FarmerRegisterScreen = ({navigation}) => {
     const [mobileNo,setMobileNo] = useState(null);
     const [password,setPassword] = useState(null);
     const [address,setAddress] = useState(null);
-    const [loginMessage,setLoginMessage] = useState(null);
+    const [loginMessage,setLoginMessage] = useState("");
     const image = { uri: "https://media.istockphoto.com/vectors/landscape-of-rice-field-terraces-asian-rural-background-agriculture-vector-id1226970191?k=20&m=1226970191&s=612x612&w=0&h=60ddCH9qlOmTZe_Sqw7QSTYv3KK-dNUr7n5yBnCZjoE=" };
 
     const handleSignup = (credentials) => {
-        console.log("SDSHJKSHFKJHFSJKHFSKJH")
         const url = REACT_APP_BASE_URL+"farmers/addFarmer";
         axios.post(url,{fullName:fullName,email:email,password:password,address:address,mobileNo:mobileNo})
         .then(response=>{
@@ -33,6 +32,7 @@ const FarmerRegisterScreen = ({navigation}) => {
                 console.log("BBBBBBBBBBBBB")
                 navigation.navigate('FarmerHome',{user:res.User})
             }else{
+                console.log("Error")
                 setLoginMessage(res.Message)
             }
         })
@@ -85,7 +85,7 @@ const FarmerRegisterScreen = ({navigation}) => {
                     onChangeText={(text)=>setPassword(text)}
                 />
                 {
-                    loginMessage===""?<Text style={styles.loginMessage}>{loginMessage}</Text>:null
+                    loginMessage!==""?<Text style={styles.loginMessage}>{loginMessage}</Text>:null
                 }
                 
                 <TouchableOpacity style={styles.buttonContainer} onPress={handleSignup}>

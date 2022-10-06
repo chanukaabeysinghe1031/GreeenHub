@@ -18,6 +18,9 @@ import AddCommentScreen from '../screens/farmer/FarmerAddCommentScreen';
 import AddReviewScreen from '../screens/farmer/FarmerAddReviewScreen';
 import SelfPostsScreen from '../screens/farmer/FarmerSelfPostsScreen';
 import SelfCommentsScreen from '../screens/farmer/FarmerSelfCommentsScreen';
+import AddReportScreen from '../screens/farmer/FarmerReportScreen';
+
+
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
@@ -38,6 +41,8 @@ const Navigation = () => {
                 <Stack.Screen name='AddReview' component={AddReviewScreen} options={{headerShown:false}}></Stack.Screen>
                 <Stack.Screen name='SelfPosts' component={SelfPostsScreen} options={{headerShown:false}}></Stack.Screen>
                 <Stack.Screen name='CommentsOfTheSelfPosts' component={SelfCommentsScreen} options={{headerShown:false}}></Stack.Screen>
+                <Stack.Screen name='AddReport' component={AddReportScreen} options={{headerShown:false}}></Stack.Screen>
+
             </Stack.Navigator>
         </NavigationContainer>
     );

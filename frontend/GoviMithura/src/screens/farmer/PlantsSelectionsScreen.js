@@ -12,6 +12,9 @@ import {
 import { SectionGrid } from 'react-native-super-grid';
 
 const PlantsSelectionsScreen= ({route,navigation}) => {
+  useEffect(() => {
+    console.log(route.params.user)
+})
     const image = { uri: "https://media.istockphoto.com/vectors/landscape-of-rice-field-terraces-asian-rural-background-agriculture-vector-id1226970191?k=20&m=1226970191&s=612x612&w=0&h=60ddCH9qlOmTZe_Sqw7QSTYv3KK-dNUr7n5yBnCZjoE=" };
     const {user} = route.params;
     const [items1, setItems1] = React.useState([

@@ -8,15 +8,32 @@ import {
     StyleSheet,
     ImageBackground,
 } from 'react-native';
+import axios from 'axios';
 
 const FarmerHomeScreen = ({route,navigation}) => {
     const image = { uri: "https://media.istockphoto.com/vectors/landscape-of-rice-field-terraces-asian-rural-background-agriculture-vector-id1226970191?k=20&m=1226970191&s=612x612&w=0&h=60ddCH9qlOmTZe_Sqw7QSTYv3KK-dNUr7n5yBnCZjoE=" };
 
-    const {user} = route.params;
+    const [user,setUser] = useState(route.params.user);
 
     useEffect(() => {
-        console.log(process.env.REACT_APP_BASE_URL)
-        console.log("PASSED USER",user.fullName)
+        const REACT_APP_BASE_URL = "http://172.20.10.2:3003/api/";
+        const url = REACT_APP_BASE_URL+"farmers/refreshFarmer";
+        axios.post(url,{farmerId:user._id})
+        .then(response=>{
+           let res = JSON.stringify(response.data);
+           setLoginMessage(res.Status);
+           res = JSON.parse(res)
+           if(res.Status==="Successful"){
+               setUser(res.User)
+               console.log("OKK REFRESHED")
+           }else{
+               console.log(res.Message)
+           }
+        })
+        .catch(error=>{
+            console.log(error)
+           // setLoginMessage(error)
+        })
     })
     return(
         <View style={styles.container}>

@@ -95,6 +95,37 @@ exports.signin = async (req, res) => {
                     });
             }
         })
+        .catch(error=>{
+            res.json({
+                "Status":"Unsuccessful",
+                "Error": error
+            })
+        })
+}
+
+// ****************************** To refresh user account data ******************************
+exports.refresh = async (req, res) => {
+    const {farmerId} = req.body;
+
+    //Validation
+    if (!farmerId) {
+        res.json({Status: "Unsuccessful", Message: 'Farmer Id must be entered.'});
+    }
+
+    //Check for existing user
+    Farmer.findById(farmerId)
+        .then(user => {
+            if (!user) {
+                res.json({Status: "Unsuccessful", Message: 'Invalid user id.'})
+            } else {
+                //Validating password
+                res.json({
+                    Status: "Successful",
+                    Message: 'User has been refreshed successfully.',
+                    User: user
+                })
+            }
+        })
 }
 
 exports.getUsers = async (req,res) =>{

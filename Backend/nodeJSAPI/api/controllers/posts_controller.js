@@ -57,3 +57,25 @@ exports.getPosts = async (req,res) =>{
             })
     }
 }
+
+exports.getPostsOfFarmer = async (req,res) =>{
+
+    const {farmerId} = req.body
+    if(farmerId===""){
+        res.json({Status: "Unsuccessful", Message: "All the data must be entered."})
+    }else{
+        Posts.find({farmerId:farmerId})
+            .then(posts=>{
+                res.json({
+                    "Status":"Successful",
+                    "Posts": posts
+                })
+            })
+            .catch(error=>{
+                res.json({
+                    "Status":"Unsuccessful",
+                    "Error": error
+                })
+            })
+    }
+}

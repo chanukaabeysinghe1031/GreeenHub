@@ -21,6 +21,7 @@ import SelfCommentsScreen from '../screens/farmer/FarmerSelfCommentsScreen';
 import AddReportScreen from '../screens/farmer/FarmerReportScreen';
 import AdminLoginScreen from '../screens/admin/AdminLoginScreen';
 import AdminHomeScreen from '../screens/admin/adminHomeScreen';
+import SelfAddReviewScreen from '../screens/farmer/FarmerSelfAddReviewScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +44,7 @@ const Navigation = () => {
                 <Stack.Screen name='SelfPosts' component={SelfPostsScreen} options={{headerShown:false}}></Stack.Screen>
                 <Stack.Screen name='CommentsOfTheSelfPosts' component={SelfCommentsScreen} options={{headerShown:false}}></Stack.Screen>
                 <Stack.Screen name='AddReport' component={AddReportScreen} options={{headerShown:false}}></Stack.Screen>
+                <Stack.Screen name='SelfReviews' component={SelfAddReviewScreen} options={{headerShown:false}}></Stack.Screen>
 
 
                 <Stack.Screen name='AdminLogin' component={AdminLoginScreen} options={{headerShown:false}}></Stack.Screen>

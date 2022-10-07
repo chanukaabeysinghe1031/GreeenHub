@@ -63,7 +63,7 @@ const SelfCommentsScreen =  ({route,navigation}) => {
                                     <TouchableOpacity 
                                         style={styles.rateButtonContainer} 
                                         onPress={
-                                            ()=>navigation.navigate('AddReview',{data:{
+                                            ()=>navigation.navigate('SelfReviews',{data:{
                                                 user:data.user,
                                                 commentId:item._id,
                                                 category:data.category,
